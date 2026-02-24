@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   identidock:
-    image: aramevinyan/identidock:1.2.0
+    image: aramevinyan/identidock:2.0.0
     build: .
     ports:
       - "5000:5000"
@@ -10,3 +10,8 @@ services:
       ENV: DEV
     volumes:
       - ./app:/app
+    links:
+      - dnmonster
+
+dnmonster:
+  image: aramevinyan/identidock:2.0.0
