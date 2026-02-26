@@ -2,7 +2,6 @@ version: "3.9"
 
 services:
   identidock:
-    image: aramevinyan/identidock:2.0.0
     build: .
     ports:
       - "5000:5000"
@@ -10,8 +9,12 @@ services:
       ENV: DEV
     volumes:
       - ./app:/app
-    links:
+    depends_on:
       - dnmonster
+      - redis
 
-dnmonster:
-  image: aramevinyan/identidock:2.0.0
+  dnmonster:
+    image: amouat/dnmonster:1.0
+
+  redis:
+    image: redis:3.0
